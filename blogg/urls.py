@@ -5,5 +5,5 @@ urlpatterns = patterns('',
     url(r'^posts/$', 'blogg.views.post_list'),
     url(r'^posts/(?P<id>\d+)/((?P<showComments>.*)/)?$', 'blogg.views.post_detail'),
     ## add your url here
-    url(r'^post/search/(\w\d)', 'blogg.views.post_search')
+    url(r'^posts/search/(\w.*)', 'blogg.views.post_search')
 )

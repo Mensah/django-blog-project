@@ -14,13 +14,9 @@ def post_list(request):
     return HttpResponse(post_list)
 
 def post_detail(request, id, showComments=False):
-    pass
-'''
-    single_post = Post.objects.get(id)
-    if showComments != False:
-        return HttpResponse(single_post)
-    return
-'''
+    single_post = Post.objects.get(pk=id)
+    return HttpResponse(single_post)
+
 def post_search(request, term):
     pass
   #  searched = Post.objects.value(term)
