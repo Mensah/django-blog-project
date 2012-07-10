@@ -1,0 +1,15 @@
+{extend blogg/base.html}
+{% block %}
+
+<ul>
+	<li>Title : {{Post.title}}</li>
+	<li>Body : {{Post.body}}</li>
+	<li>Created : {{Post.created}}</li>
+	<li>Updated : {{Post.updated}}</li>
+</ul>
+
+{% for comments in %}
+
+{% endfor %}
+
+{% endblock %}

@@ -1,10 +1,10 @@
 # Create your views here.
 from django.template import Context, loader
+from django.shortcuts import render_to_response
 from django.http import HttpResponse
-import re
 from models import Post, Comment 
 
-
+'''
 def post_list(request):
     post_list = Post.objects.all()
     
@@ -12,6 +12,12 @@ def post_list(request):
     print post_list
     
     return HttpResponse(post_list)
+'''
+def post_list(request):
+    posts = Post.objects.all()
+    t = loader.get_template('blogg/post_list.html')
+    c = Context({'posts':posts })
+    return HttpResponse(t.render(c))
 
 def post_detail(request, id, showComments=False):
     single_post = Post.objects.get(pk=id)
