@@ -10,6 +10,8 @@ class Post(models.Model):
     updated = models.DateField(auto_now=True)
     def __unicode__(self):
         return self.title
+    def first_sixty(self):
+        return self.body[:60]
     @models.permalink
     def get_absolute_url(self):
         return ('post_detail', (),

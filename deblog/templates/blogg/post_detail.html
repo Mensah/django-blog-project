@@ -1,15 +1,21 @@
-{extend blogg/base.html}
-{% block %}
-
+{extends blogg/base.html}
+{% block content %}
+{% for post in posts %}
 <ul>
-	<li>Title : {{Post.title}}</li>
-	<li>Body : {{Post.body}}</li>
-	<li>Created : {{Post.created}}</li>
-	<li>Updated : {{Post.updated}}</li>
+	<li>Title : {{post.title}}</li>
+	<li><p>Body : {{post.body}}</p></li>
+	<li>Created : {{post.created}}</li>
+	<li>Updated : {{post.updated}}</li>
 </ul>
 
-{% for comments in %}
-
+	{% for i in posts.comments.all()  %}
+		<ul>
+			<li>Author: {{i.author}}</li>
+			<li>Comment: {{i.body}}</li>
+			<li>Created: {{i.created}}</li>
+			<li>Updated: {{i.updated}}</li>
+		<ul>
+	{% endfor %}
 {% endfor %}
 
 {% endblock %}
