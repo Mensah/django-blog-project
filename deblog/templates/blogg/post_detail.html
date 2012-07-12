@@ -14,10 +14,19 @@
 		<li>Comment: {{i.body}}</li>
 		<li>Created: {{i.created}}</li>
 		<li>Updated: {{i.updated}}</li>
-		<br/>
-		<br/>
 	<ul>
+	<br/>
+	<div>
+		<a href="blogg/comments/{{comment.id}}/edit">Edit Comment</a>
+	</div>
 	{% endfor %}
 
+<h3>New Comment:</h3>
+<div>
+	<form method='post' action="">
+		{{form.as_p}}
+		<input type='submit' name='Submit'>
+	</form>
+</div>
 
 {% endblock %}
