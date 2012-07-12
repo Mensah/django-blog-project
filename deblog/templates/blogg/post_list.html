@@ -1,13 +1,13 @@
-{% extends base.html %w}
+{% extends "blogg/base.html" %}
 {% block content %}
 
 {% for post in posts %}
-	<h2><a href = "/blog/posts/{{post.get_absolute_url}}">{{Post.title}}</a></h2>
+	<h2><a href = "{{post.get_absolute_url}}">{{post.title}}</a></h2>
 	
 	<ul>
 		<li>Created : {{post.created}}</li>
 		<li>Updated : {{post.updated}}</li>
-		<li>First Sixty Words : {{post.fisrt_sixty}}</li>
+		<li>First Sixty Words : {{post.first_sixty}}</li>
 	</ul>
 	
 {% endfor %}

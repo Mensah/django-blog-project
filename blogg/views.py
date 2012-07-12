@@ -16,26 +16,25 @@ def post_list(request):
 def post_list(request):
     posts = Post.objects.all()
     t = loader.get_template('blogg/post_list.html')
-    c = Context({'posts':posts })
+    c = Context({'posts':posts})
     return HttpResponse(t.render(c))
 
 def post_detail(request, id, showComments=False):
-    single_post = Post.objects.get(pk=id)
-    html = '<h3>'+str(single_post) + '</h3><br/>' + str(single_post.body)  + '<br/><h5>Comments</h5><br/>'
+    posts = Post.objects.get(pk=id)
+    comments = posts.comments.all
+    '''   html = '<h3>'+str(single_post) + '</h3><br/>' + str(single_post.body)  + '<br/><h5>Comments</h5><br/>'
     comm = ' '
     for i in single_post.comments.all():
-        comm += i.body + '<br/>'
-    return HttpResponse(single_post)
+        comm += i.body + '<br/>'''
+    return render_to_response('blogg/post_detail.html', {'posts':posts, 'comments':comments})
 
 def post_search(request, term):
-    searched = Post.objects.filter(body__contains=term)
-    res = ' '
+    posts = Post.objects.filter(body__contains=term) 
+    '''res = ' '
     for i in searched:
-        res +=  i.title + ' : ' + i.body
-        
-    return HttpResponse(res)
+        res +=  i.title + ' : ' + i.body'''
+    return render_to_response('blogg/post_search.html', {'posts':posts, 'term':term})
 
 def home(request):
-    print 'it works'
-    return HttpResponse('hellurrrr world. Ete zene?') 
+    return render_to_response('blogg/base.html', {}) 
 
