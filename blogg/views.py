@@ -48,12 +48,12 @@ def edit_comment(request,id):
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(comment.post.get_absolute_url)
+            return HttpResponseRedirect(comment.post.get_absolute_url())
     else:
         form =CommentForm(instance = comment)
     
     
-    return render_to_response('blogg/edit_template.html', {'comment':commt ,'form':form})
+    return render_to_response('blogg/edit_template.html', {'comment':comment ,'form':form})
 
 def post_search(request, term):
     posts = Post.objects.filter(body__contains=term) 
