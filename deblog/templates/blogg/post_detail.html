@@ -3,23 +3,26 @@
 
 <ul>
 	<li>Title : {{posts.title}}</li>
-	<li><p>Body : {{posts.body}}</p></li>
+	<li>Body : {{posts.body}}</li>
 	<li>Created : {{posts.created}}</li>
 	<li>Updated : {{posts.updated}}</li>
 </ul>
 
-{% for i in posts.comments.all  %}
+<h3>Comments</h3>
+
+{% for i in comments  %}
 	<ul>
-		<li>Author: {{i.author}}</li>
-		<li>Comment: {{i.body}}</li>
-		<li>Created: {{i.created}}</li>
-		<li>Updated: {{i.updated}}</li>
-	<ul>
-	<br/>
+	<li>Author: {{i.author}}</li>
+	<li>Comment: {{i.body}}</li>
+	<li>Created: {{i.created}}</li>
+	<li>Updated: {{i.updated}}</li>
+	</ul>
+	
 	<div>
-		<a href="blogg/comments/{{comment.id}}/edit">Edit Comment</a>
+		<a href="/blogg/comments/{{i.id}}/edit">Edit Comment</a>
 	</div>
 	{% endfor %}
+	<br/>
 
 <h3>New Comment:</h3>
 <div>

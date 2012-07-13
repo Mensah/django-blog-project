@@ -6,7 +6,7 @@ from django.contrib import admin
 class Post(models.Model):
     title = models.CharField(max_length=60)
     body = models.TextField()
-    created = models.DateField()
+    created = models.DateField(auto_now=True)
     updated = models.DateField(auto_now=True)
     def __unicode__(self):
         return self.title
@@ -19,7 +19,7 @@ class Post(models.Model):
 class Comment(models.Model):
     author = models.CharField(max_length=60)
     body = models.TextField()
-    created = models.DateField()
+    created = models.DateField(auto_now=True)
     updated = models.DateField(auto_now=True)
     post = models.ForeignKey(Post, related_name = 'comments')
     def __unicode__(self):

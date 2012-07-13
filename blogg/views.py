@@ -29,21 +29,31 @@ class CommentForm(ModelForm):
         
 @csrf_exempt
 def post_detail(request, id, showComments=False):
+    posts = Post.objects.get(pk=id)
     if request.method =="POST":
-        comment = Comment(post=target_post)
+        comment = Comment(post=posts)
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
         return HttpResponseRedirect(request.path)
     else:
         form =CommentForm()    
-    posts = Post.objects.get(pk=id)
-    comments = posts.comments.all
-    '''   html = '<h3>'+str(single_post) + '</h3><br/>' + str(single_post.body)  + '<br/><h5>Comments</h5><br/>'
-    comm = ' '
-    for i in single_post.comments.all():
-        comm += i.body + '<br/>'''
+    comments = posts.comments.all()
     return render_to_response('blogg/post_detail.html', {'posts':posts, 'comments':comments, 'form':form})
+
+@csrf_exempt
+def edit_comment(request,id):
+    comment = Comment.objects.get(pk=id)
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(comment.post.get_absolute_url)
+    else:
+        form =CommentForm(instance = comment)
+    
+    
+    return render_to_response('blogg/edit_template.html', {'comment':commt ,'form':form})
 
 def post_search(request, term):
     posts = Post.objects.filter(body__contains=term) 
